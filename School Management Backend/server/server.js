@@ -20,7 +20,7 @@ connectDB();
 const app = express();
 app.use(
     cors({
-        origin: process.env.CLIENT_URL || "http://localhost:5173",
+        origin: process.env.CLIENT_URL,
         credentials: true,
     })
 );
@@ -34,7 +34,6 @@ app.use('/api/Newregistration', NewRegistrationRoutes);  // Ensure this is corre
 app.use('/api/students', studentRoutes);
 app.use('/api/email', emailRoutes);
 app.use('/api/bonafide', certificateRoutes); 
-// app.use('/api/fees', paymentRoutes)
 app.use('/api/enquiry', enquiryRoutes); // Ensure this is correctly mounted
 app.use("/api/auth", authRoutes);
 app.use('/api/idcard', idCardRoutes); // Mount the route
