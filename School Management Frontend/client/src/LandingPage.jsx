@@ -29,13 +29,13 @@ const LandingPage = () => {
     }, [isMenuOpen]);
 
     const heroImages = [
-        "../Images/seminar1.jpg",
-        "../Images/seminar2.jpg",
-        "../Images/feildtrip1.jpeg",
-        "../Images/fieldtrip2.jpeg",
-        "../Images/fieldtrip3.jpeg",
-        "../Images/ground2.jpeg",
-        "../Images/ground1.jpg",
+        "/Images/seminar1.jpg",
+        "/Images/seminar2.jpg",
+        "/Images/feildtrip1.jpeg",
+        "/Images/fieldtrip2.jpeg",
+        "/Images/fieldtrip3.jpeg",
+        "/Images/ground2.jpeg",
+        "/Images/ground1.jpg",
     ];
 
     useEffect(() => {
@@ -107,19 +107,19 @@ const LandingPage = () => {
         {
             name: "Dr. Syed Ali Luqman Hussaini, Ph. D.",
             role: "Chairman",
-            image: "../Images/director1.jpeg",
+            image: "/Images/director1.jpeg",
             description: " 16 years of  experience in teaching at Undergraduate, Graduate and Post Graduate level in prestigious colleges in Hyderabad"
         },
         {
             name: "Mrs Hafsa Batool",
             role: "Admin incharge",
-            image: "../Images/mam.png",
+            image: "/Images/mam.png",
             description: "Expert in curriculum development and teaching methodologies Specialist in school administration and operations"
         },
         {
             name: "Dr Moramshetty Ravindra Prasad",
             role: " Science Subjet Expert",
-            image: "../Images/sirs1.png",
+            image: "/Images/sirs1.png",
             description: "Expert in curriculum development and teaching methodologies"
         }
     ];
