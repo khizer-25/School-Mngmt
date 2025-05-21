@@ -174,7 +174,7 @@ export default SignUp;
 
 //     const handleSubmit = (e) => {
 //         e.preventDefault();
-//         axios.post('https://school-mngmt.onrender.com//register', { name, email, password, confirmPassword })
+//         axios.post('https://school-mngmt.onrender.com/register', { name, email, password, confirmPassword })
 //         .then(result => {console.log(result)
 //         navigate('/login')
 //         })

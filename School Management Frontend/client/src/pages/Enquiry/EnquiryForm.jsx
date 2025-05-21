@@ -45,7 +45,7 @@ const EnquiryForm = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const response = await fetch('https://school-mngmt.onrender.com//api/enquiry', {
+        const response = await fetch('https://school-mngmt.onrender.com/api/enquiry', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),

@@ -35,10 +35,10 @@ function BonafideForm() {
           ? `admissionNumber=${searchValue}`
           : `studentName=${searchValue}`;
 
-      console.log("Searching with URL:", `https://school-mngmt.onrender.com//api/idcard/find-student?${queryParam}`);
+      console.log("Searching with URL:", `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`);
       
       const res = await fetch(
-        `https://school-mngmt.onrender.com//api/idcard/find-student?${queryParam}`
+        `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
       );
 
       if (!res.ok) {
@@ -102,7 +102,7 @@ function BonafideForm() {
     try {
       setIsLoading(true);
       
-      const res = await fetch('https://school-mngmt.onrender.com//api/bonafide', {
+      const res = await fetch('https://school-mngmt.onrender.com/api/bonafide', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

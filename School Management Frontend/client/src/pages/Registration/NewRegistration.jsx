@@ -26,7 +26,7 @@ const StudentRegistrationForm = () => {
   if (!admissionNumber) return;
 
   try {
-    const response = await axios.get('https://school-mngmt.onrender.com//api/Newregistration/check-admission-number', {
+    const response = await axios.get('https://school-mngmt.onrender.com/api/Newregistration/check-admission-number', {
       params: { admissionNumber },
     });
 
@@ -97,7 +97,7 @@ const StudentRegistrationForm = () => {
       }
 
       try {
-        const response = await axios.post('https://school-mngmt.onrender.com//api/Newregistration/register', formData, {
+        const response = await axios.post('https://school-mngmt.onrender.com/api/Newregistration/register', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         

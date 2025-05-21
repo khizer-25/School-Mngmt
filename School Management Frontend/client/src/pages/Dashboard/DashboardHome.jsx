@@ -46,7 +46,7 @@ const DashboardHome = () => {
   const fetchStats = async () => {
     if (currentTab === 'dashboard') {
       try {
-        const { data } = await axios.get('https://school-mngmt.onrender.com//api/dashboard/stats');
+        const { data } = await axios.get('https://school-mngmt.onrender.com/api/dashboard/stats');
         setStats(data);
       } catch (error) {
         console.error('Error fetching dashboard stats:', error);
