@@ -24,7 +24,7 @@ const DisplayStudentInfo = () => {
           : { studentName: query };
 
       const response = await axios.get(
-        'http://localhost:5000/api/Newregistration/findStudents',
+        'https://school-mngmt.onrender.com//api/Newregistration/findStudents',
         { params }
       );
 
@@ -50,7 +50,7 @@ const DisplayStudentInfo = () => {
 
   const handleGetAll = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/newRegistration/getstudents');
+      const response = await axios.get('https://school-mngmt.onrender.com//api/newRegistration/getstudents');
 
       // Ensure we access the students array correctly
       setStudents(response.data.students || []); // Default to an empty array if students key is missing
@@ -98,7 +98,7 @@ const DisplayStudentInfo = () => {
   const renderDocument = (filename) => {
     if (!filename) return 'N/A';
 
-    const fileUrl = `http://localhost:5000/uploads/${filename}`;
+    const fileUrl = `https://school-mngmt.onrender.com//uploads/${filename}`;
     const isPDF = filename.toLowerCase().endsWith('.pdf');
 
     return isPDF ? (
@@ -127,11 +127,11 @@ const DisplayStudentInfo = () => {
   const renderPhoto = (filename) =>
     filename ? (
       <img
-        src={`http://localhost:5000/uploads/${filename}`}
+        src={`https://school-mngmt.onrender.com//uploads/${filename}`}
         alt="student"
         className="w-14 h-14 object-cover rounded cursor-pointer hover:scale-105 transition-transform"
         onClick={() =>
-          setPreviewImage(`http://localhost:5000/uploads/${filename}`)
+          setPreviewImage(`https://school-mngmt.onrender.com//uploads/${filename}`)
         }
       />
     ) : (
@@ -156,13 +156,13 @@ const DisplayStudentInfo = () => {
         Email: student.emailAddress || 'N/A',
         Address: student.address || 'N/A',
         BirthCertificate: student.birthCertificate
-          ? `http://localhost:5000/uploads/${student.birthCertificate}`
+          ? `https://school-mngmt.onrender.com//uploads/${student.birthCertificate}`
           : 'N/A',
         PreviousMarksheet: student.previousMarksheet
-          ? `http://localhost:5000/uploads/${student.previousMarksheet}`
+          ? `https://school-mngmt.onrender.com//uploads/${student.previousMarksheet}`
           : 'N/A',
         TransferCertificate: student.transferCertificate
-          ? `http://localhost:5000/uploads/${student.transferCertificate}`
+          ? `https://school-mngmt.onrender.com//uploads/${student.transferCertificate}`
           : 'N/A',
       }));
     

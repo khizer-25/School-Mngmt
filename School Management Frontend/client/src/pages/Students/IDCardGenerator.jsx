@@ -98,7 +98,7 @@ function IDCardGenerator() {
           : `studentName=${searchValue}`;
 
       const res = await fetch(
-        `http://localhost:5000/api/idcard/find-student?${queryParam}`
+        `https://school-mngmt.onrender.com//api/idcard/find-student?${queryParam}`
       );
 
       if (!res.ok) {
@@ -122,7 +122,7 @@ function IDCardGenerator() {
         address: studentData.address,
         phone: studentData.phoneNumber,
         photo: studentData.studentPhoto
-          ? `http://localhost:5000/uploads/${studentData.studentPhoto}`
+          ? `https://school-mngmt.onrender.com//uploads/${studentData.studentPhoto}`
           : null,
         logo: student.logo,
       });

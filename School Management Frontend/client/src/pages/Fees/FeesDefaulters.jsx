@@ -16,7 +16,7 @@ const FeesDefaulters = () => {
     }
 
     try {
-      const response = await axios.get('http://localhost:5000/api/fees/students-with-balance', {
+      const response = await axios.get('https://school-mngmt.onrender.com//api/fees/students-with-balance', {
         params: { grade, section },
       });
       setDefaulters(response.data);
@@ -29,7 +29,7 @@ const FeesDefaulters = () => {
   };
   const fetchAllDefaulters = async () => {
   try {
-    const response = await axios.get('http://localhost:5000/api/fees/all-defaulters');
+    const response = await axios.get('https://school-mngmt.onrender.com//api/fees/all-defaulters');
     setDefaulters(response.data);
     setShowTable(true);
     setFetchingAll(true);

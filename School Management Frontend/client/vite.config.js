@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000', // ⬅️ Your actual backend
+      '/api': 'https://school-mngmt.onrender.com/', // ⬅️ Your actual backend
     },
   },
 });
