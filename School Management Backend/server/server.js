@@ -18,12 +18,21 @@ connectDB();
 
 
 const app = express();
-app.use(
-    cors({
-        origin: process.env.CLIENT_URL,
-        credentials: true,
-    })
-);
+app.use(cors({
+    origin: function (origin, callback) {
+        if (
+            !origin ||
+            origin === process.env.CLIENT_URL ||
+            /\.vercel\.app$/.test(origin) // allow all vercel preview deployments
+        ) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
