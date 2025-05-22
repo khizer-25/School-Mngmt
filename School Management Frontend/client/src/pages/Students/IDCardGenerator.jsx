@@ -121,9 +121,7 @@ function IDCardGenerator() {
           : "",
         address: studentData.address,
         phone: studentData.phoneNumber,
-        photo: studentData.studentPhoto
-          ? `https://school-mngmt.onrender.com/uploads/${studentData.studentPhoto}`
-          : null,
+        photo: studentData.studentPhoto || null,
         logo: student.logo,
       });
 

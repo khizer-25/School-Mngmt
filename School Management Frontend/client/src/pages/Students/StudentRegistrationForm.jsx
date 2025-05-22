@@ -95,48 +95,47 @@ const DisplayStudentInfo = () => {
     return isNaN(date.getTime()) ? 'N/A' : date.toLocaleDateString('en-IN');
   };
 
-  const renderDocument = (filename) => {
-    if (!filename) return 'N/A';
+ const renderDocument = (url) => {
+  if (!url) return 'N/A';
 
-    const fileUrl = `https://school-mngmt.onrender.com/uploads/${filename}`;
-    const isPDF = filename.toLowerCase().endsWith('.pdf');
+  const isPDF = url.toLowerCase().endsWith('.pdf');
 
-    return isPDF ? (
-      <img
-        src="/pdf-icon.png" // Use a local PDF icon or any public one
-        alt="PDF Document"
-        className="w-10 h-10 object-contain cursor-pointer hover:scale-105"
-        onClick={() => {
-          setPreviewFile(fileUrl);
-          setPreviewType('pdf');
-        }}
-      />
-    ) : (
-      <img
-        src={fileUrl}
-        alt="Document"
-        className="w-14 h-14 object-cover rounded cursor-pointer hover:scale-105"
-        onClick={() => {
-          setPreviewFile(fileUrl);
-          setPreviewType('image');
-        }}
-      />
-    );
-  };
+  return isPDF ? (
+    <img
+      src="/pdf-icon.png" // your custom PDF icon
+      alt="PDF Document"
+      className="w-10 h-10 object-contain cursor-pointer hover:scale-105"
+      onClick={() => {
+        setPreviewFile(url);
+        setPreviewType('pdf');
+      }}
+    />
+  ) : (
+    <img
+      src={url}
+      alt="Document"
+      className="w-14 h-14 object-cover rounded cursor-pointer hover:scale-105"
+      onClick={() => {
+        setPreviewFile(url);
+        setPreviewType('image');
+      }}
+    />
+  );
+};
 
-  const renderPhoto = (filename) =>
-    filename ? (
-      <img
-        src={`https://school-mngmt.onrender.com/uploads/${filename}`}
-        alt="student"
-        className="w-14 h-14 object-cover rounded cursor-pointer hover:scale-105 transition-transform"
-        onClick={() =>
-          setPreviewImage(`https://school-mngmt.onrender.com/uploads/${filename}`)
-        }
-      />
-    ) : (
-      'N/A'
-    );
+    
+  const renderPhoto = (url) =>
+  url ? (
+    <img
+      src={url}
+      alt="student"
+      className="w-14 h-14 object-cover rounded cursor-pointer hover:scale-105 transition-transform"
+      onClick={() => setPreviewImage(url)}
+    />
+  ) : (
+    'N/A'
+  );
+
 
     const downloadExcel = () => {
       const formattedData = students.map(student => ({
