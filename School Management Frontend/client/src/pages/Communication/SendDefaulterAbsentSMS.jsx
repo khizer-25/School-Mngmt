@@ -53,7 +53,7 @@ School Administration`
         return;
       }
 
-      const res = await axios.get("http://localhost:5000/api/students/search", {
+      const res = await axios.get("https://school-mngmt.onrender.com/api/students/search", {
         params: {
           admissionNumber: searchBy === "admissionNumber" ? paramValue : "",
           studentName: searchBy === "studentName" ? paramValue : "",
@@ -99,7 +99,7 @@ School Administration`
         return;
       }
 
-      await axios.post("http://localhost:5000/api/email/send-defaulters", {
+      await axios.post("https://school-mngmt.onrender.com/api/email/send-defaulters", {
         recipients: emails,
         subject: `${activeTab} Notification`,
         message,

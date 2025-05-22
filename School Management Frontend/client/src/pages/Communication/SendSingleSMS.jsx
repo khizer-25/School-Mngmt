@@ -6,7 +6,7 @@ const SendSingleEmail = () => {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [studentData, setStudentData] = useState(null);
-    const maxCharacters = 500;;
+    const maxCharacters = 500;
 
     const emailTemplates = {
     welcome: "Assalam Alaikum.🎉Welcome to our school! We're excited to have you join us. Please reach out if you have any questions.",
@@ -34,7 +34,7 @@ const [selectedTemplate, setSelectedTemplate] = useState('');
                 queryString = `studentName=${searchQuery}`;
             }
             
-            const response = await fetch(`/api/students/search?${queryString}`, {
+            const response = await fetch(`https://school-mngmt.onrender.com/api/students/search?${queryString}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const [selectedTemplate, setSelectedTemplate] = useState('');
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/email/sendSingleEmail', {
+            const response = await fetch('https://school-mngmt.onrender.com/api/email/sendSingleEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
