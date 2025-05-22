@@ -30,7 +30,7 @@ const SendGroupEmail = () => {
     setIsSending(true);
   
     try {
-      const res = await axios.post('https://school-mngmt.onrender.com/api/email/send-group', {
+      const res = await axios.post('http://localhost:5000/api/email/send-group', {
         recipients: emailList,
         subject,
         message,
@@ -55,9 +55,9 @@ const SendGroupEmail = () => {
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">Send Group Email</h1>
 
       <div className="bg-white p-6 rounded shadow">
+        <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">Send Group Email</h1>
         <div className="mb-4">
           <label className="block font-semibold mb-2">Recipients :</label>
           <input

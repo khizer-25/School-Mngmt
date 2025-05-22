@@ -35,10 +35,10 @@ function BonafideForm() {
           ? `admissionNumber=${searchValue}`
           : `studentName=${searchValue}`;
 
-      console.log("Searching with URL:", `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`);
+      console.log("Searching with URL:", `http://localhost:5000/api/idcard/find-student?${queryParam}`);
       
       const res = await fetch(
-        `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
+        `http://localhost:5000/api/idcard/find-student?${queryParam}`
       );
 
       if (!res.ok) {
@@ -102,7 +102,7 @@ function BonafideForm() {
     try {
       setIsLoading(true);
       
-      const res = await fetch('https://school-mngmt.onrender.com/api/bonafide', {
+      const res = await fetch('http://localhost:5000/api/bonafide', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ function BonafideForm() {
   };
 
   return (
-    <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
+    <div className="p-4 md:p-8  min-h-screen  bg-gray-100">
       <div className="bg-white p-4 rounded shadow mb-6 w-full">
         <h2 className="text-2xl font-bold text-blue-600 mb-4">Bonafide Certificate Generator</h2>
         <div className="flex flex-wrap items-center gap-4">
@@ -206,8 +206,10 @@ function BonafideForm() {
         </div>
       </div>
 
-      {showStudentForm && (
-        <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl">
+     {showStudentForm && (
+  <div className="flex justify-center">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-xl">
+
           <h2 className="text-xl font-bold mb-6 text-blue-600">Certificate Details</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
@@ -268,25 +270,14 @@ function BonafideForm() {
               className="w-full border rounded p-2"
               required
             />
-            <textarea
-              name="reason"
-              value={formData.reason}
-              onChange={handleChange}
-              placeholder="Reason for Certificate"
-              className="w-full border rounded p-2"
-              rows="3"
-              required
-            />
-            
-            <div className="pt-2">
-              <h3 className="text-md font-semibold mb-2 text-gray-700">Additional Information</h3>
-              <input
+            <input
                 name="fatherName"
                 type="text"
                 value={formData.fatherName}
                 onChange={handleChange}
                 placeholder="Father's Name"
                 className="w-full border rounded p-2 mb-2"
+                required
               />
               <select
                 name="gender"
@@ -298,8 +289,15 @@ function BonafideForm() {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
-            </div>
-            
+            <textarea
+              name="reason"
+              value={formData.reason}
+              onChange={handleChange}
+              placeholder="Reason for Certificate"
+              className="w-full border rounded p-2"
+              rows="3"
+              required
+            />
             <div className="flex justify-between">
               <button
                 type="button"
@@ -317,6 +315,7 @@ function BonafideForm() {
               </button>
             </div>
           </form>
+        </div>
         </div>
       )}
     </div>

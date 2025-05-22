@@ -19,7 +19,7 @@ const SentSMSHistory = () => {
     setDataFetched(false);
 
     try {
-        const response = await fetch('https://school-mngmt.onrender.com/api/email/history');
+        const response = await fetch('http://localhost:5000/api/email/history');
         const result = await response.json();
 
         if (result.success) {
@@ -103,7 +103,7 @@ const isDateMatch =
     };
     
     return (
-        <div className="min-h-screen bg-white p-6">
+        <div className="bg-white p-6">
             <h1 className="text-3xl font-bold text-blue-600 mb-8 text-center">Mail History</h1>
 
             {/* Filters */}

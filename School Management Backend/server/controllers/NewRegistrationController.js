@@ -46,10 +46,10 @@ const registerStudent = async (req, res) => {
       phoneNumber,
       emailAddress,
       address,
-      studentPhoto: req.files?.studentPhoto?.[0]?.filename || '',
-      birthCertificate: req.files?.birthCertificate?.[0]?.filename || '',
-      previousMarksheet: req.files?.previousMarksheet?.[0]?.filename || '',
-      transferCertificate: req.files?.transferCertificate?.[0]?.filename || '',
+      studentPhoto: req.files?.studentPhoto?.[0]?.path || '',
+      birthCertificate: req.files?.birthCertificate?.[0]?.path || '',
+      previousMarksheet: req.files?.previousMarksheet?.[0]?.path || '',
+      transferCertificate: req.files?.transferCertificate?.[0]?.path || '',
     });
 
     await student.save();
