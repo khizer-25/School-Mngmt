@@ -78,13 +78,6 @@ const EnquiryForm = () => {
   
   return (
     <div className="max-w-lg mx-auto">
-      {/* Header and download button */}
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl text-blue-600 font-bold">Student Enquiry Form</h1>
-       
-      </div>
-
-      
       {/* Form success message */}
       {isSubmitted && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -95,6 +88,7 @@ const EnquiryForm = () => {
 
       {/* Enquiry form */}
       <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
+        <h1 className="text-2xl text-blue-600 font-bold mb-6">Student Enquiry Form</h1>
         {/* Student Name */}
         <div className="mb-4">
           <label htmlFor="studentName" className="block text-gray-700 text-sm font-bold mb-2">

@@ -75,23 +75,23 @@ const BonafideTracker = () => {
     setCurrentPage(1);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`https://school-mngmt.onrender.com/api/bonafide/${id}`, {
-        method: 'DELETE',
-      });
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const response = await fetch(`https://school-mngmt.onrender.com/api/bonafide/${id}`, {
+  //       method: 'DELETE',
+  //     });
 
-      if (!response.ok) {
-        throw new Error(`Delete failed: ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`Delete failed: ${response.status}`);
+  //     }
 
-      setCertificates(certificates.filter(cert => cert._id !== id));
-      alert('Certificate deleted successfully');
-    } catch (error) {
-      console.error('Error deleting certificate:', error);
-      alert(`Failed to delete certificate: ${error.message}`);
-    }
-  };
+  //     setCertificates(certificates.filter(cert => cert._id !== id));
+  //     alert('Certificate deleted successfully');
+  //   } catch (error) {
+  //     console.error('Error deleting certificate:', error);
+  //     alert(`Failed to delete certificate: ${error.message}`);
+  //   }
+  // };
 
   const handleDownload = (id) => {
     window.open(`https://school-mngmt.onrender.com/api/bonafide/download/${id}`, '_blank');
@@ -319,14 +319,14 @@ const BonafideTracker = () => {
                             >
                               Download
                             </button>
-                            <button
+                            {/* <button
                               onClick={() => {
                                       if (window.confirm('Are you sure you want to delete this certificate?')) {
                                       handleDelete(certificate._id);}}}
                               className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                             >
                               Delete
-                            </button>
+                            </button> */}
                           </div>
                         </td>
                       </tr>
