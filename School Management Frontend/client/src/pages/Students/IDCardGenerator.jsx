@@ -20,6 +20,7 @@ function IDCardGenerator() {
   const [showPreview, setShowPreview] = useState(false);
   const [showStudentForm, setShowStudentForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [notFoundMessage, setNotFoundMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -40,7 +41,7 @@ function IDCardGenerator() {
     const idCardContent = document.getElementById("idCard").innerHTML;
     const styleContent = document.querySelector("style")?.outerHTML || "";
     const printWindow = window.open("", "_blank");
-
+    
     printWindow.document.write(`
       <html>
         <head>
