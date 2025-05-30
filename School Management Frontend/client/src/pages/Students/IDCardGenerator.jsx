@@ -20,6 +20,8 @@ function IDCardGenerator() {
   const [showPreview, setShowPreview] = useState(false);
   const [showStudentForm, setShowStudentForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+const [notFoundMessage, setNotFoundMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -88,52 +90,86 @@ function IDCardGenerator() {
     printWindow.document.close();
   };
 
-  const handleSearch = async () => {
-    if (!searchValue.trim()) return alert("Please enter a value to search.");
-    setIsLoading(true);
-    try {
-      const queryParam =
-        searchBy === "admissionNumber"
-          ? `admissionNumber=${searchValue}`
-          : `studentName=${searchValue}`;
+const handleSearch = async () => {
+  setNotFoundMessage(""); // Clear previous messages
 
-      const res = await fetch(
-        `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
-      );
+  if (!searchValue.trim()) {
+    setNotFoundMessage("Please enter a value to search.");
+    return;
+  }
 
-      if (!res.ok) {
-        return alert("Student not found.");
-      }
+  setIsLoading(true);
 
-      const data = await res.json();
-      const studentData = data.students[0];
+  try {
+    const queryParam =
+      searchBy === "admissionNumber"
+        ? `admissionNumber=${searchValue}`
+        : `studentName=${searchValue}`;
 
-      setStudent({
-        name: `${studentData.firstName} ${studentData.middleName ? " " + studentData.middleName : ""} ${studentData.lastName}`.trim(),
-        fatherName: studentData.parentName,
-        studentClass: `${studentData.grade} - ${studentData.section}`,
-        rollNo: studentData.rollNumber,
-        gender: studentData.gender,
-        dob: studentData.dateOfBirth
-          ? new Date(studentData.dateOfBirth)
-              .toLocaleDateString("en-GB")
-              .replace(/\//g, "-")  // replace slashes with dashes
-          : "",
-        address: studentData.address,
-        phone: studentData.phoneNumber,
-        photo: studentData.studentPhoto || null,
-        logo: student.logo,
-      });
+    const res = await fetch(
+      `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
+    );
 
-      setShowStudentForm(true);
-      setShowPreview(true);
-    } catch (error) {
-      console.error(error);
-      alert("Error fetching student data.");
-    } finally {
-      setIsLoading(false);
+    if (!res.ok) {
+      setNotFoundMessage("Student not found.");
+      setShowStudentForm(false);
+      setShowPreview(false);
+      return;
     }
-  };
+
+    const data = await res.json();
+
+    if (data.students.length === 0) {
+      setNotFoundMessage("No student found.");
+      setShowStudentForm(false);
+      setShowPreview(false);
+      return;
+    }
+
+    if (data.students.length > 1) {
+      setNotFoundMessage(
+        "Multiple students found with the same name. Please search using the Admission Number."
+      );
+      setShowStudentForm(false);
+      setShowPreview(false);
+      return;
+    }
+
+    const studentData = data.students[0];
+
+    setStudent({
+      name: `${studentData.firstName} ${studentData.middleName ? " " + studentData.middleName : ""} ${studentData.lastName}`.trim(),
+      fatherName: studentData.parentName,
+      studentClass: `${studentData.grade} - ${studentData.section}`,
+      rollNo: studentData.rollNumber,
+      gender: studentData.gender,
+      dob: studentData.dateOfBirth
+        ? new Date(studentData.dateOfBirth)
+            .toLocaleDateString("en-GB")
+            .replace(/\//g, "-")
+        : "",
+      address: studentData.address,
+      phone: studentData.phoneNumber,
+      photo: studentData.studentPhoto
+        ? `https://school-mngmt.onrender.com/uploads/${studentData.studentPhoto}`
+        : null,
+      logo: student.logo,
+    });
+
+    setShowStudentForm(true);
+    setShowPreview(true);
+    setNotFoundMessage(""); // Clear message on success
+  } catch (error) {
+    console.error(error);
+    setNotFoundMessage("Error fetching student data.");
+    setShowStudentForm(false);
+    setShowPreview(false);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
 
   return (
     <div className="p-4 md:p-8 bg-gray-100 min-h-screen">
@@ -212,6 +248,12 @@ function IDCardGenerator() {
           </button>
         </div>
       </div>
+      {notFoundMessage && (
+  <p className="w-full text-red-600  px-2 py-1 text-md font-semibold">
+    {notFoundMessage}
+  </p>
+)}
+
 
       <div className="grid md:grid-cols-2 gap-8">
         {showStudentForm && (
