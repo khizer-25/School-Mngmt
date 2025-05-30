@@ -20,8 +20,6 @@ function IDCardGenerator() {
   const [showPreview, setShowPreview] = useState(false);
   const [showStudentForm, setShowStudentForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [notFound, setNotFound] = useState(false);
-const [notFoundMessage, setNotFoundMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -90,7 +88,7 @@ const [notFoundMessage, setNotFoundMessage] = useState("");
     printWindow.document.close();
   };
 
-const handleSearch = async () => {
+  const handleSearch = async () => {
   setNotFoundMessage(""); // Clear previous messages
 
   if (!searchValue.trim()) {
@@ -107,8 +105,8 @@ const handleSearch = async () => {
         : `studentName=${searchValue}`;
 
     const res = await fetch(
-      `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
-    );
+        `https://school-mngmt.onrender.com/api/idcard/find-student?${queryParam}`
+      );
 
     if (!res.ok) {
       setNotFoundMessage("Student not found.");
@@ -138,23 +136,21 @@ const handleSearch = async () => {
     const studentData = data.students[0];
 
     setStudent({
-      name: `${studentData.firstName} ${studentData.middleName ? " " + studentData.middleName : ""} ${studentData.lastName}`.trim(),
-      fatherName: studentData.parentName,
-      studentClass: `${studentData.grade} - ${studentData.section}`,
-      rollNo: studentData.rollNumber,
-      gender: studentData.gender,
-      dob: studentData.dateOfBirth
-        ? new Date(studentData.dateOfBirth)
-            .toLocaleDateString("en-GB")
-            .replace(/\//g, "-")
-        : "",
-      address: studentData.address,
-      phone: studentData.phoneNumber,
-      photo: studentData.studentPhoto
-        ? `https://school-mngmt.onrender.com/uploads/${studentData.studentPhoto}`
-        : null,
-      logo: student.logo,
-    });
+        name: `${studentData.firstName} ${studentData.middleName ? " " + studentData.middleName : ""} ${studentData.lastName}`.trim(),
+        fatherName: studentData.parentName,
+        studentClass: `${studentData.grade} - ${studentData.section}`,
+        rollNo: studentData.rollNumber,
+        gender: studentData.gender,
+        dob: studentData.dateOfBirth
+          ? new Date(studentData.dateOfBirth)
+              .toLocaleDateString("en-GB")
+              .replace(/\//g, "-")  // replace slashes with dashes
+          : "",
+        address: studentData.address,
+        phone: studentData.phoneNumber,
+        photo: studentData.studentPhoto || null,
+        logo: student.logo,
+      });
 
     setShowStudentForm(true);
     setShowPreview(true);
@@ -168,7 +164,6 @@ const handleSearch = async () => {
     setIsLoading(false);
   }
 };
-
 
 
   return (
@@ -253,7 +248,6 @@ const handleSearch = async () => {
     {notFoundMessage}
   </p>
 )}
-
 
       <div className="grid md:grid-cols-2 gap-8">
         {showStudentForm && (
