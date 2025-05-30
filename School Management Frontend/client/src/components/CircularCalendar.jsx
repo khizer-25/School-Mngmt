@@ -5,11 +5,11 @@ export default function CircularCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [events, setEvents] = useState([
-    { date: new Date(2025, 4, 24), title: "PTM Meeting", type: "meeting" },
+    { date: new Date(2025, 5, 1), title: "PTM Meeting", type: "meeting" },
     { date: new Date(2025, 4, 31), title: "Annual Sports Day", type: "event" },
-    { date: new Date(2025, 4, 20), title: "Science Exhibition", type: "event" },
-    { date: new Date(2025, 4, 25), title: "Holiday", type: "holiday" },
-    { date: new Date(2025, 4, 30), title: "Fee Due Date", type: "reminder" }
+    { date: new Date(2025, 5, 20), title: "Science Exhibition", type: "event" },
+    { date: new Date(2025, 5, 25), title: "Holiday", type: "holiday" },
+    { date: new Date(2025, 5, 10), title: "Fee Due Date", type: "reminder" }
   ]);
 
   // Get month details

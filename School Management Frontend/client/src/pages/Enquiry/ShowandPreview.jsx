@@ -99,6 +99,7 @@ const [endDate, setEndDate] = useState("");
           <input
             type="date"
             value={startDate}
+            max={new Date().toISOString().split("T")[0]}
             onChange={(e) => setStartDate(e.target.value)}
             className="border p-2 rounded w-full mb-2"
           />
@@ -107,7 +108,7 @@ const [endDate, setEndDate] = useState("");
             value={endDate}
             max={new Date().toISOString().split("T")[0]}
             onChange={(e) => setEndDate(e.target.value)}
-            className="border p-2 rounded w-full"
+            className="border p-2 rounded w-full mb-2"
           />
         </div>
         <button
